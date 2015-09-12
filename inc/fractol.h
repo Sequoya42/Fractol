@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/12 19:39:43 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/12 20:01:57 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define WIN_X 800
 # define WIN_Y 800
-# define MAX_ITER 256
+# define MAX_ITER 8
 
 # define CXMIN -2.5
 # define CXMAX -1.5
@@ -52,9 +52,20 @@ typedef struct  s_env
 	t_frac		*f;
 }               t_env;
 
+//------------Events--------------//
+
+int				key_hook(int keycode, t_env *e);
+//------------Rainbow-Color-------------//
 int				rainbow_color(int i, double x, double y);
 int				lerp(float v0, float v1, float t);
 float			normalize(double x, double y, int i);
+//----------Ft_init---------------//
+t_frac			*init_frac(void);
+t_env			*init_env(t_frac *frac);
+//------------------------------//
+int				draw_julia(t_env *e);
+
+//------------------------------//
 
 
 #endif
