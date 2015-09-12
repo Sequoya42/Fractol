@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:00 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/09 16:40:31 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/12 17:33:59 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,43 @@ int rainbow_color(int i, double x, double y)
 			(lerp(blue, blue_2, i % 1) << 8) + lerp(green, green_2, i % 1));
 }
 
-int main(void)
+int	ft_draw(t_env *e)
 {
-	t_env e;
-
-	e.mlx = mlx_init();
-	e.win = mlx_new_window(e.mlx, WIN_X, WIN_Y, "Fractol");
-	mlx_loop(e.mlx);
-	return (0);
+	int x = 0;
+	int y = 0;
+	while (x < 112)
+	{
+		y = 0;
+		while (y < 220)
+		{
+			mlx_pixel_put(e->mlx, e->win, x, y, rainbow_color(x, x, y));
+			y++;
+		}
+		x++;
+	}
+	return 0;
 }
 
+
+int     key_hook(int keycode, t_env *e)
+{
+    mlx_clear_window(e->mlx, e->win);
+	ft_putnbrn(keycode);
+    if (keycode == 53)
+        exit(0);
+	ft_draw(e);
+    return (0);
+}
+
+int main(void)
+{
+	t_env *e;
+
+	e = malloc(sizeof(t_env) * 1);
+	e->mlx = mlx_init();
+	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "Fractol");
+	mlx_key_hook(e->win, key_hook, e);
+	mlx_expose_hook(e->win, ft_draw , e);
+	mlx_loop(e->mlx);
+	return (0);
+}
