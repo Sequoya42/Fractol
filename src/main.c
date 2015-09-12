@@ -6,59 +6,44 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:00 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/12 17:33:59 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/12 19:46:22 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
-#include <math.h>
-
-int lerp(float v0, float v1, float t) {
-	return (1 - t ) * v0 + t * v1;
-}
-
-float normalize(double x, double y, int i)
-{
-	double zn = sqrt(x * x + y * y);
-	double nu = log(log(zn) / log(2)) / log(2);
-	return (i + 1 - nu);
-}
-
-int rainbow_color(int i, double x, double y)
-{
-	float frequency = .8;
-
-	if (i == MAX_ITER)
-		return (0);
-	int k = floor(normalize(x, y, i));
-	int red = sin(frequency * k) * 127 + 128;
-	int green = sin(frequency * k + 2) * 127 + 128;
-	int blue = sin(frequency * k + 4) * 127 + 128;
-	int red_2 = sin(frequency * (k + 1)) * 127 + 128;
-	int green_2 = sin(frequency * (k + 1) + 2) * 127 + 128;
-	int blue_2 = sin(frequency * (k + 1) + 4) * 127 + 128;
-	return ((lerp(red, red_2, i % 1) << 16) +
-			(lerp(blue, blue_2, i % 1) << 8) + lerp(green, green_2, i % 1));
-}
 
 int	ft_draw(t_env *e)
 {
+	t_frac *f;
+	f = e->f;
 	int x = 0;
 	int y = 0;
-	while (x < 112)
+	int i = 0;
+	while (x < WIN_X)
 	{
 		y = 0;
-		while (y < 220)
+		while (y < WIN_Y)
 		{
-			mlx_pixel_put(e->mlx, e->win, x, y, rainbow_color(x, x, y));
+			f->nr = 1.5 * (x - (WIN_X / 2)) / (0.5 * f->zoom * WIN_X) + f->mx;
+			f->ni = (y - (WIN_Y / 2)) / (0.5 * f->zoom * WIN_Y) + f->my;
+			while (i < MAX_ITER)
+			{
+				f->or = f->nr;
+				f->oi = f->ni;
+				f->nr = (f->or * f->or) - (f->oi * f->oi) + f->cr;
+				f->ni = (2 * f->or * f->oi) + f->ci;
+				if ((f->nr * f->nr) + (f->ni * f->ni) > 4)
+					break;
+				i++;
+			}
+			mlx_pixel_put(e->mlx, e->win, x, y, rainbow_color(i, x, y));
+			i = 0;
 			y++;
 		}
 		x++;
 	}
 	return 0;
 }
-
 
 int     key_hook(int keycode, t_env *e)
 {
@@ -70,13 +55,36 @@ int     key_hook(int keycode, t_env *e)
     return (0);
 }
 
+t_frac	*init_frac(void)
+{
+	t_frac *f;
+	f = malloc(sizeof(t_frac) * 1);
+	f->cr = -0.7;
+	f->ci = 0.27015;
+	f->iter = 256;
+	f->zoom = 1;
+	f->mx = 0;
+	f->my = 0;
+	return f;
+}
+
+t_env	*init_env(t_frac *frac)
+{
+	t_env *e;
+	e = malloc(sizeof(t_env) * 1);
+	e->mlx = mlx_init();
+	e->f = frac;
+	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "Fractol");
+	return e;
+}
+
 int main(void)
 {
 	t_env *e;
+	t_frac *f;
 
-	e = malloc(sizeof(t_env) * 1);
-	e->mlx = mlx_init();
-	e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "Fractol");
+	f = init_frac();
+	e = init_env(f);
 	mlx_key_hook(e->win, key_hook, e);
 	mlx_expose_hook(e->win, ft_draw , e);
 	mlx_loop(e->mlx);

@@ -6,7 +6,7 @@
 #    By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/12 17:20:35 by rbaum             #+#    #+#              #
-#    Updated: 2015/09/09 16:12:06 by rbaum            ###   ########.fr        #
+#    Updated: 2015/09/12 19:18:36 by rbaum            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,6 +29,7 @@ INC_PATH =		./inc/
 
 SRC_NAME =		main.c \
 				fractol.c\
+				rainbow_color.c\
 
 OBJ_NAME =		$(SRC_NAME:.c=.o)
 
