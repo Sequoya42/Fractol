@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/12 19:49:47 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/13 21:14:53 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_env   *init_env(t_frac *frac)
     e = malloc(sizeof(t_env) * 1);
     e->mlx = mlx_init();
     e->f = frac;
+	e->f->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
     e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "Fractol");
+	e->f->d = mlx_get_data_addr(e->f->img, &e->f->bpp, &e->f->line_size, &e->f->endian);
     return e;
 }

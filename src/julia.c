@@ -6,11 +6,28 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:57:42 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/12 19:59:31 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/13 21:30:43 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+
+
+void put_pixel(t_frac *e, int x, int y, int color)
+{
+	const unsigned int bytes = e->bpp / 8;
+	const unsigned int p = x * bytes + y * e->line_size;
+	size_t i;
+
+	i = 0;
+	while (i < bytes)
+	{
+		e->d[p + i] = color;
+		color >>= 8;
+		i++;
+	}
+}
 
 int draw_julia(t_env *e)
 {
@@ -36,11 +53,13 @@ int draw_julia(t_env *e)
                     break;
                 i++;
             }
-            mlx_pixel_put(e->mlx, e->win, x, y, rainbow_color(i, x, y));
+			put_pixel(f, x, y, rainbow_color(i, x, y));
+//            mlx_pixel_put(e->mlx, e->win, x, y, rainbow_color(i, x, y));
             i = 0;
             y++;
         }
         x++;
     }
+	mlx_put_image_to_window(e->mlx, e->win, f->img, 0, 0);
     return 0;
 }

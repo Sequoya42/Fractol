@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/12 20:01:57 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/13 21:31:28 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define WIN_X 800
 # define WIN_Y 800
-# define MAX_ITER 8
+# define MAX_ITER 256
 
 # define CXMIN -2.5
 # define CXMAX -1.5
@@ -33,6 +33,7 @@
 
 typedef struct s_frac
 {
+	char		*d;			// buffer where the image will be stored (d is for data)
 	double		cr;			// c is constant, cr is the real part
 	double		ci;			// ci is the imaginary part
 	double		nr;			// new real
@@ -43,6 +44,10 @@ typedef struct s_frac
 	double		mx;			// move x
 	double		my;			// move y
 	int			iter;
+	int			bpp;
+	int			endian;
+	int			line_size;
+	void		*img;
 }				t_frac;
 
 typedef struct  s_env
