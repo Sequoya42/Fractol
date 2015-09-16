@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcat.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/05 15:40:17 by rbaum             #+#    #+#             */
-/*   Updated: 2014/11/11 17:35:54 by rbaum            ###   ########.fr       */
+/*   Created: 2014/11/05 13:36:52 by rbaum             #+#    #+#             */
+/*   Updated: 2015/03/21 17:51:10 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *s1, const char *s2)
+char	*ft_strdup(const char *s1)
 {
-	int		i;
-	int		j;
-	char	*str;
+	int			i;
+	int			j;
+	char		*s2;
 
 	i = 0;
-	j = 0;
-	str = s1;
-	while (str[i] != '\0')
+	if (!s1)
+		return (NULL);
+	while (s1[i])
 		i++;
-	while (s2[j] != '\0')
+	if ((s2 = (char *)malloc(sizeof(char) * (i + 1))) == NULL)
+		return (NULL);
+	j = 0;
+	while (s1[j])
 	{
-		str[i + j] = s2[j];
+		s2[j] = s1[j];
 		j++;
 	}
-	str[i + j] = '\0';
-	return (s1);
+	s2[j] = '\0';
+	return (s2);
 }

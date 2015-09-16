@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clear_tab.c                                     :+:      :+:    :+:   */
+/*   ft_update_tab.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/15 19:50:14 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/08 19:43:33 by rbaum            ###   ########.fr       */
+/*   Created: 2015/02/20 07:42:22 by rbaum             #+#    #+#             */
+/*   Updated: 2015/02/22 23:05:46 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		ft_clear_tab(char **tab)
+char		**ft_update_tab(char **tab)
 {
 	int		i;
 	int		k;
+	char	**tmp;
 
 	i = 0;
+	k = 0;
 	if (tab == NULL)
-		tab = NULL;
-	else
+		return (NULL);
+	while (tab[i])
 	{
-		while (tab[i])
-		{
-			k = ft_strlen(tab[i]);
-			while (tab[i][k])
-			{
-				tab[i][k] = '\0';
-				k--;
-			}
-			i++;
-		}
-		tab = NULL;
+		if (tab[i][0] == '\0')
+			k++;
+		i++;
 	}
+	if ((tmp = malloc(sizeof(*tab) * (i - k) + 1)) == NULL)
+		ft_error(NULL, NULL, NULL);
+	return (tmp);
 }

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/07 12:07:05 by rbaum             #+#    #+#             */
-/*   Updated: 2014/11/11 16:01:52 by rbaum            ###   ########.fr       */
+/*   Created: 2014/11/03 18:08:11 by rbaum             #+#    #+#             */
+/*   Updated: 2015/03/17 19:43:14 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr(char const *s)
+int			ft_isdigit(int c)
 {
-	int i;
+	return (c >= '0' && c <= '9');
+}
 
-	i = 0;
-	while (s[i])
-	{
-		ft_putchar(s[i]);
-		i++;
-	}
+int			ft_isdigitand(int c)
+{
+	return ((ft_isdigit(c) || c == '-' || c == '+'));
 }

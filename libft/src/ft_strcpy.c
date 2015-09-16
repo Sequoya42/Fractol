@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/08 19:34:00 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/15 21:03:33 by rbaum            ###   ########.fr       */
+/*   Created: 2014/11/04 11:05:11 by rbaum             #+#    #+#             */
+/*   Updated: 2015/02/21 20:50:35 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	t_env *e;
-	t_frac *f;
+	int i;
 
-	if (ac != 2)
-		return (ft_error(NULL, NULL,"Please enter blablabla\n"));
-	(void)av;
-	f = init_frac();
-	e = init_env(f);
-	mlx_expose_hook(e->win, draw_fractal , e);
-	mlx_loop(e->mlx);
-	return (0);
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

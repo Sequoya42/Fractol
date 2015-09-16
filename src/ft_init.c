@@ -36,5 +36,6 @@ t_env   *init_env(t_frac *frac)
 	e->f->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
     e->win = mlx_new_window(e->mlx, WIN_X, WIN_Y, "Fractol");
 	e->f->d = mlx_get_data_addr(e->f->img, &e->f->bpp, &e->f->line_size, &e->f->endian);
+    e->t = (double)time(NULL);
     return e;
 }

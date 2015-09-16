@@ -1,0 +1,21 @@
+		f->my -= 0.1;
+		f->my += 0.1;
+		f->mx -= 0.1;
+		f->mx += 0.1;
+		f->zoom++;
+    f->cr = -0.7;
+    f->ci = 0.27015;
+    f->iter = 256;
+    f->zoom = 1;
+    f->mx = 0;
+    f->my = 0;
+	e->f->img = mlx_new_image(e->mlx, WIN_X, WIN_Y);
+	e->f->d = mlx_get_data_addr(e->f->img, &e->f->bpp, &e->f->line_size, &e->f->endian);
+		e->f->orl = e->f->nr;
+		e->f->oi = e->f->ni;
+		e->f->nr = (e->f->orl * e->f->orl) - (e->f->oi * e->f->oi) + e->f->cr;
+		e->f->ni = (2 * e->f->orl * e->f->oi) + e->f->ci;
+		if ((e->f->nr * e->f->nr) + (e->f->ni * e->f->ni) > 4)
+            f->nr = 1.5 * (x - (WIN_X / 2)) / (0.5 * f->zoom * WIN_X) + f->mx;
+            f->ni = (y - (WIN_Y / 2)) / (0.5 * f->zoom * WIN_Y) + f->my;
+	mlx_put_image_to_window(e->mlx, e->win, f->img, 0, 0);

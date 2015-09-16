@@ -40,6 +40,6 @@ int rainbow_color(int i, double x, double y)
     int red_2 = sin(frequency * (k + 1)) * 127 + 128;
     int green_2 = sin(frequency * (k + 1) + 2) * 127 + 128;
     int blue_2 = sin(frequency * (k + 1) + 4) * 127 + 128;
-    return ((lerp(red, red_2, i % 1) << 16) +
+    return ((lerp(red, red_2, i % 2) << 16) +
             (lerp(blue, blue_2, i % 1) << 8) + lerp(green, green_2, i % 1));
 }
