@@ -33,3 +33,23 @@ int		draw_julia(t_frac *f, int x, int y)
 }
 
 
+int		draw_mandel(t_frac *f, int x, int y)
+{
+	int i;
+
+	i = 0;
+	   f->cr = 1.5 * (x - (WIN_X / 2)) / (0.5 * f->zoom * WIN_X) + f->mx;
+    f->ci = (y - (WIN_Y / 2)) / (0.5 * f->zoom * WIN_Y) + f->my;
+    f->orl = f->nr = f->oi = f->ni = 0;
+	while (i < MAX_ITER)
+	{
+		f->orl = f->nr;
+		f->oi = f->ni;
+		f->nr = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->cr;
+		f->ni = (2 * f->orl * f->oi) + f->ci;
+		if ((SQUARE(f->nr)) + (SQUARE(f->ni)) > 4) // 4 means break if the point is 
+			break;									//  outside the circle with radius 2
+		i++;
+	}
+	return (i);
+}

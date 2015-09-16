@@ -12,15 +12,21 @@
 
 #include "fractol.h"
 
+int 	please_choose()
+{
+	ft_putstr("Type 1 for mandelbrot\n");
+	ft_putstr("Type 2 for julia\n");
+	return (-1);
+}
+
 int main(int ac, char **av)
 {
 	t_env *e;
 	t_frac *f;
 
 	if (ac != 2)
-		return (ft_error(NULL, NULL,"Please enter blablabla\n"));
-	(void)av;
-	f = init_frac();
+		return (please_choose());
+	f = init_frac(av[1]);
 	e = init_env(f);
 	mlx_expose_hook(e->win, draw_fractal , e);
 	mlx_loop(e->mlx);

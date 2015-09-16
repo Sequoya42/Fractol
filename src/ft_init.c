@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-t_frac  *init_frac(void)
+t_frac  *init_frac(char *av)
 {
     t_frac *f;
 
@@ -23,6 +23,7 @@ t_frac  *init_frac(void)
     f->zoom = 1;
     f->mx = 0;
     f->my = 0;
+    f->n = ft_atoi(av);
     return f;
 }
 

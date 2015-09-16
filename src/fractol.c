@@ -27,23 +27,35 @@ void put_pixel(t_frac *e, int x, int y, int color)
 	}
 }
 
+int 	choose_fractal(t_frac *f, int x, int y)
+{
+	if (f->n == 1)
+		return (draw_mandel(f, x, y));
+	else if (f->n == 2)
+		return (draw_julia(f, x, y));
+	return 0;
+}
+
 int draw_fractal(t_env *e)
 {
     t_frac *f;  
     int 	x;
     int 	y;
     int 	c;
+	int 	ch; // choice of fractal
 
 	f = e->f;
 	x = 0;
 	y = 0;
+
 	mlx_key_hook(e->win, key_hook, e);
     while (x < WIN_X)
     {
         y = 0;
         while (y < WIN_Y)
         {
-       	  	c = rainbow_color(draw_julia(f, x, y), x, y);
+       		ch = choose_fractal(f, x, y);
+       	  	c = rainbow_color(ch, x, y);
 			put_pixel(f, x, y, c);
             y++;
         }

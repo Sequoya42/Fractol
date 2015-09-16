@@ -43,8 +43,10 @@ typedef struct s_frac
 	double		orl;			// old real
 	double		oi;			// old imaginary
 	double		zoom;
+
 	double		mx;			// move x
 	double		my;			// move y
+	int 		n;			// number to choose which fractal
 	int			iter;
 	int			bpp;
 	int			endian;
@@ -68,10 +70,11 @@ int				rainbow_color(int i, double x, double y);
 int				lerp(float v0, float v1, float t);
 float			normalize(double x, double y, int i);
 //----------Ft_init---------------//
-t_frac			*init_frac(void);
+t_frac			*init_frac(char *av);
 t_env			*init_env(t_frac *frac);
 //------------------------------//
 int				draw_julia(t_frac *f, int x, int y);
+int				draw_mandel(t_frac *f, int x, int y);
 int				draw_fractal(t_env *e);
 
 //------------------------------//
