@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/15 21:01:42 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/16 21:21:55 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define WIN_X 512
 # define WIN_Y 512
-# define MAX_ITER 128
+# define MAX_ITER 64
 
 # define CXMIN -2.0
 # define CXMAX 2.0
