@@ -39,15 +39,14 @@ int 	choose_fractal(t_frac *f, int x, int y)
 int draw_fractal(t_env *e)
 {
     t_frac *f;  
-    int 	x;
-    int 	y;
+    double 	x;
+    double 	y;
     int 	c;
 	int 	ch; // choice of fractal
 
 	f = e->f;
-	x = 0;
-	y = 0;
-
+	x = 0.0;
+	y = 0.0;
 	mlx_key_hook(e->win, key_hook, e);
     while (x < WIN_X)
     {
@@ -55,7 +54,7 @@ int draw_fractal(t_env *e)
         while (y < WIN_Y)
         {
        		ch = choose_fractal(f, x, y);
-       	  	c = rainbow_color(ch, x, y);
+       	  	c = rainbow_color(ch);
 			put_pixel(f, x, y, c);
             y++;
         }

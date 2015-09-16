@@ -23,8 +23,8 @@
 # define WIN_Y 512
 # define MAX_ITER 128
 
-# define CXMIN -2.5
-# define CXMAX -1.5
+# define CXMIN -2.0
+# define CXMAX 2.0
 # define CYMIN -2.0
 # define CYMAX 2.0
 
@@ -66,7 +66,7 @@ typedef struct  s_env
 
 int				key_hook(int keycode, t_env *e);
 //------------Rainbow-Color-------------//
-int				rainbow_color(int i, double x, double y);
+int				rainbow_color(int i);
 int				lerp(float v0, float v1, float t);
 float			normalize(double x, double y, int i);
 //----------Ft_init---------------//

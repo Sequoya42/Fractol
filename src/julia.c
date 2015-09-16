@@ -32,7 +32,6 @@ int		draw_julia(t_frac *f, int x, int y)
 	return (i);
 }
 
-
 int		draw_mandel(t_frac *f, int x, int y)
 {
 	int i;
