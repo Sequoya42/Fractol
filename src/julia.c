@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:57:42 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 19:09:55 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 20:05:20 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		draw_mandel(t_env *e, int x, int y)
 		f->nr = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->cr;
 		f->ni = (2 * f->oi * f->orl) + f->ci;
 		if ((SQUARE(f->nr)) + (SQUARE(f->ni)) > 4) // 4 means break if the point is 
-			break;									//  outside the circle with radius 2
+			break;
 		i++;
 	}
 	return (i);

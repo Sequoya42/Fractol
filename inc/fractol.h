@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 19:16:39 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 19:44:21 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_frac
 	double		ni;			// new imaginary
 	double		orl;			// old real
 	double		oi;			// old imaginary
-	double		zoom;
+	long long		zoom;
 
 	double		mx;			// move x
 	double		my;			// move y

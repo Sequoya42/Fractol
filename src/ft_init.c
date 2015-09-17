@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 19:15:31 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 20:06:19 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static t_frac  *init_frac(char *av)
 {
     t_frac *f;
     f = malloc(sizeof(t_frac) * 1);
-    f->cr = 0.7;
+    f->cr = -0.7;
     f->ci = 0.27015;
-    f->zoom = 1.1;
+    f->zoom = 1;
     f->mx = 0.0;
     f->my = 0.0;
     f->n = ft_atoi(av);
