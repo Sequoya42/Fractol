@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:00 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/15 21:03:33 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 17:51:05 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ int 	please_choose()
 int main(int ac, char **av)
 {
 	t_env *e;
-	t_frac *f;
 
 	if (ac != 2)
 		return (please_choose());
-	f = init_frac(av[1]);
-	e = init_env(f);
+	e = init_env(av[1]);
 	mlx_expose_hook(e->win, draw_fractal , e);
 	mlx_loop(e->mlx);
 	return (0);

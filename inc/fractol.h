@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/16 21:21:55 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 19:16:39 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,26 @@
 
 # define WIN_X 512
 # define WIN_Y 512
-# define MAX_ITER 64
+# define MAX_ITER e->iter
 
-# define CXMIN -2.0
-# define CXMAX 2.0
-# define CYMIN -2.0
-# define CYMAX 2.0
+# define CXMIN e->m->xmin
+# define CXMAX e->m->xmax
+# define CYMIN e->m->ymin
+# define CYMAX e->m->ymax
 
 #define SQUARE(x) x * x
 
-# define PIXW (CXMAX - CXMIN) / WIN_X
-# define PIXH (CYMAX - CYMIN) / WIN_Y
+# define PIXW (CXMAX - CXMIN) / (WIN_X - 1)
+# define PIXH (CYMAX - CYMIN) / (WIN_Y - 1)
+
+typedef struct s_mod
+{
+	double		xmin;
+	double		xmax;
+	double		ymin;
+	double		ymax;
+
+}				t_mod;
 
 typedef struct s_frac
 {
@@ -46,12 +55,13 @@ typedef struct s_frac
 
 	double		mx;			// move x
 	double		my;			// move y
+
 	int 		n;			// number to choose which fractal
-	int			iter;
 	int			bpp;
 	int			endian;
 	int			line_size;
 	void		*img;
+
 }				t_frac;
 
 typedef struct  s_env
@@ -59,22 +69,23 @@ typedef struct  s_env
     void        *mlx;
     void        *win;
 	t_frac		*f;
+	t_mod		*m;
 	double		t;
+	double		iter;
 }               t_env;
 
 //------------Events--------------//
 
 int				key_hook(int keycode, t_env *e);
 //------------Rainbow-Color-------------//
-int				rainbow_color(int i);
+int				rainbow_color(int i, double iter);
 int				lerp(float v0, float v1, float t);
 float			normalize(double x, double y, int i);
 //----------Ft_init---------------//
-t_frac			*init_frac(char *av);
-t_env			*init_env(t_frac *frac);
+t_env			*init_env(char *av);
 //------------------------------//
-int				draw_julia(t_frac *f, int x, int y);
-int				draw_mandel(t_frac *f, int x, int y);
+int				draw_julia(t_env *e, int x, int y);
+int				draw_mandel(t_env *e, int x, int y);
 int				draw_fractal(t_env *e);
 
 //------------------------------//

@@ -6,17 +6,17 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:18:41 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/12 19:22:58 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 19:17:12 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int rainbow_color(int i)
+int rainbow_color(int i, double iter)
 {
     float frequency = .8;
 	
-    if (i == MAX_ITER)
+    if (i == iter)
         return (0);
     int k = i;
     // int red = sin(frequency * k) * 127 + 128;

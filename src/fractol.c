@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:26:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/08 19:26:30 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 19:16:49 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,39 @@ void put_pixel(t_frac *e, int x, int y, int color)
 	}
 }
 
-int 	choose_fractal(t_frac *f, int x, int y)
+int 	choose_fractal(t_env *e, int x, int y)
 {
-	if (f->n == 1)
-		return (draw_mandel(f, x, y));
-	else if (f->n == 2)
-		return (draw_julia(f, x, y));
+	if (e->f->n == 1)
+		return (draw_mandel(e, x, y));
+	else if (e->f->n == 2)
+		return (draw_julia(e, x, y));
 	return 0;
 }
 
 int draw_fractal(t_env *e)
 {
-    t_frac *f;  
     double 	x;
     double 	y;
     int 	c;
+  	double 	iter;
 	int 	ch; // choice of fractal
 
-	f = e->f;
 	x = 0.0;
 	y = 0.0;
+	iter = MAX_ITER;
 	mlx_key_hook(e->win, key_hook, e);
-    while (x < WIN_X)
+    while (y < WIN_Y)
     {
-        y = 0;
-        while (y < WIN_Y)
+        x = 0;
+        while (x < WIN_Y)
         {
-       		ch = choose_fractal(f, x, y);
-       	  	c = rainbow_color(ch);
-			put_pixel(f, x, y, c);
-            y++;
+       		ch = choose_fractal(e, y, x);
+       	  	c = rainbow_color(ch, iter);
+			put_pixel(e->f, y, x, c);
+            x++;
         }
-        x++;
+        y++;
     }
-	mlx_put_image_to_window(e->mlx, e->win, f->img, 0, 0);
+	mlx_put_image_to_window(e->mlx, e->win, e->f->img, 0, 0);
     return 0;
 }
