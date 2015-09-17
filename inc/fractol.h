@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 19:44:21 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 20:45:02 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 #include <time.h>
 #include <stdio.h> // REMOVE THIS LINE
 
-# define WIN_X 512
-# define WIN_Y 512
+# define WIN_X 1024
+# define WIN_Y 1024
 # define MAX_ITER e->iter
 
 # define CXMIN e->m->xmin

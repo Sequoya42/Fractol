@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 20:06:19 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 20:44:31 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static t_mod   *init_mod()
 
     m = malloc(sizeof(t_mod) * 1);
     m->xmax = 2.0;
-    m->xmin = -1.5;
+    m->xmin = -2.0;
     m->ymin = -1.5;
-    m->ymax = 2.0;
+    m->ymax = 1.5;
 //    m->rfactor = m->xmax - m->xmin) / (WIN_X)
     return (m);
 }

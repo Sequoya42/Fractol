@@ -6,11 +6,13 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 19:58:24 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/17 20:48:42 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+//FIND GOOD RATIO TO * INSTEAD OF + A VALUE
 
 int     key_hook(int keycode, t_env *e)
 {
@@ -45,9 +47,13 @@ int     key_hook(int keycode, t_env *e)
 	}
 	if (keycode == 6)
 	{
+		e->m->xmax -= 0.05;
+		e->m->xmin += 0.05;
+		e->m->ymax -= 0.05;
+		e->m->ymin += 0.05;
 		if (f->zoom)
 		f->zoom <<= 1;
-		if (e->iter < 512)
+		if (e->iter < 50)
 			e->iter *= 2;
 	}
 	// if (keycode == 8)	// c || ZOOM --
