@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/18 14:19:46 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/18 15:40:15 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,18 @@
 
 # define MK_ESC	53
 
+# define MB_L	1
+# define MB_R	2
+# define MB_M	3
+# define MB_UP	5
+# define MB_DW	4
 
 typedef struct s_mod
 {
-	double		xmin;
+	double		xmin; // x is real part
 	double		xmax;
 	double		ymin;
-	double		ymax;
+	double		ymax; // y is imaginary part
 
 }				t_mod;
 
@@ -60,7 +65,7 @@ typedef struct s_frac
 	char		*d;			// buffer where the image will be stored (d is for data)
 	double		cr;			// c is constant, cr is the real part
 	double		ci;			// ci is the imaginary part
-	double		nr;			// new real
+	double		nrl;			// new real
 	double		ni;			// new imaginary
 	double		orl;			// old real
 	double		oi;			// old imaginary
@@ -86,16 +91,20 @@ typedef struct  s_env
 	double		t;
 	double		frequency;
 	double		iter;
+	double 		x;
+	double 		y;
 }               t_env;
 
 //------------Events--------------//
 
 int				key_hook(int keycode, t_env *e);
+int 	mouse_hook(int button,int x, int y, t_env *e);
 //------------Rainbow-Color-------------//
 int				rainbow_color(int i,t_env *e);
 int				lerp(float v0, float v1, float t);
 float			normalize(double x, double y, int i);
 //----------Ft_init---------------//
+t_frac  *init_frac(char *av);
 t_env			*init_env(char *av);
 //------------------------------//
 int				draw_julia(t_env *e, int x, int y);

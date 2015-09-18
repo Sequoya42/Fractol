@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/18 14:17:44 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/18 15:18:54 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_mod   *init_mod()
     return (m);
 }
 
-static t_frac  *init_frac(char *av)
+t_frac  *init_frac(char *av)
 {
     t_frac *f;
     f = malloc(sizeof(t_frac) * 1);

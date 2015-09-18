@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:57:42 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 20:05:20 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/18 15:41:00 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ int		draw_julia(t_env *e, int x, int y)
 
 	i = 0;
 	f = e->f;
-	f->nr = (CXMIN + x * PIXW + f->mx) * f->zoom;
+	 f->cr = -0.7;
+    f->ci = 0.27015;
+	f->nrl = (CXMIN + x * PIXW + f->mx) * f->zoom;
 	f->ni = (CYMIN + y * PIXH + f->my) * f->zoom;
 	while (i < MAX_ITER)
 	{
-		f->orl = f->nr;
+		f->orl = f->nrl;
 		f->oi = f->ni;
-		f->nr = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->cr;
+		f->nrl = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->cr;
 		f->ni = (2 * f->orl * f->oi) + f->ci;
-		if ((SQUARE(f->nr)) + (SQUARE(f->ni)) > 4) // 4 means break if the point is 
+		if ((SQUARE(f->nrl)) + (SQUARE(f->ni)) > 4) // 4 means break if the point is 
 			break;									//  outside the circle with radius 2
 		i++;
 	}
@@ -43,16 +45,54 @@ int		draw_mandel(t_env *e, int x, int y)
 	f = e->f;
 	f->cr = (CXMIN + x * PIXW) / f->zoom + f->mx;
 	f->ci = (CYMIN + y * PIXH) / f->zoom + f->my;
-    f->orl = f->nr = f->oi = f->ni = 0;
+    f->orl = f->nrl = f->oi = f->ni = 0;
 	while (i < MAX_ITER)
 	{
-		f->orl = f->nr;
+		f->orl = f->nrl;
 		f->oi = f->ni;
-		f->nr = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->cr;
+		f->nrl = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->cr;
 		f->ni = (2 * f->oi * f->orl) + f->ci;
-		if ((SQUARE(f->nr)) + (SQUARE(f->ni)) > 4) // 4 means break if the point is 
+		if ((SQUARE(f->nrl)) + (SQUARE(f->ni)) > 4) // 4 means break if the point is 
 			break;
 		i++;
 	}
 	return (i);
 }
+
+// int		zoom(int x, int y, double zoom, t_mlx *mlx)
+// {
+// 	double move_x;
+// 	double move_y;
+
+// 	mlx->calc->zoom *= zoom;
+// 	move_x = ((double)x - (WIDTH / 2.0)) / (WIDTH / 2);
+// 	move_y = ((double)y - (HEIGHT / 2.0)) / (HEIGHT / 2);
+// 	mlx->calc->move_x += move_x / mlx->calc->zoom / 10;
+// 	mlx->calc->move_y += move_y / mlx->calc->zoom / 10;
+// 	return (1);
+// }
+
+// int		mouse_button_hook(int button, int x, int y, t_mlx *mlx)
+// {
+// 	mlx->redraw = 1;
+// 	if (button == MOUSE_WHEEL_UP)
+// 		return (zoom(x, y, ZOOM_STEP, mlx));
+// 	else if (button == MOUSE_WHEEL_DOWN)
+// 		return (zoom(x, y, 0.9, mlx));
+// 	mlx->redraw = 0;
+// 	return (0);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

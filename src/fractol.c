@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:26:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/18 14:18:31 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/18 15:16:32 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,15 @@ int 	choose_fractal(t_env *e, int x, int y)
 
 int draw_fractal(t_env *e)
 {
-    double 	x;
-    double 	y;
     int 	c;
 	int 	ch; // choice of fractal
+	double  x;
+	double  y;
 
 	x = 0.0;
 	y = 0.0;
 	mlx_key_hook(e->win, key_hook, e);
+	mlx_mouse_hook(e->win, mouse_hook, e);
     while (y < WIN_Y)
     {
         x = 0;
