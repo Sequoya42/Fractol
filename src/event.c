@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 20:48:42 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/18 14:20:04 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,55 @@
 
 //FIND GOOD RATIO TO * INSTEAD OF + A VALUE
 
+void	change_val(t_env *e)
+{
+		e->m->xmin *= 0.5;
+		e->m->xmax *= 0.5;
+		e->m->ymax *= 0.5;
+		e->m->ymin *= 0.5;
+}
+
 int     key_hook(int keycode, t_env *e)
 {
 
     mlx_clear_window(e->mlx, e->win);
+    ft_putnbrn(keycode);
 	t_frac *f = e->f;
-    if (keycode == 53)	// escape
+    if (keycode == MK_ESC)
         exit(0);
 	if (keycode == 126)	 // up 
 	{
-		e->m->ymax -= 0.1;
-		e->m->ymin -= 0.1;
+		e->m->ymax -= 0.1 * MEH;
+		e->m->ymin -= 0.1 * MEH;
 		f->my -= 0.5;
 	}
-	if (keycode == 125)	// down
+	if (keycode == MK_DW)	// down
 	{
-		e->m->ymax += 0.1;
-		e->m->ymin += 0.1;
+		e->m->ymax += 0.1 * MEH;
+		e->m->ymin += 0.1 * MEH;
 		f->my += 0.5;
 	}
-	if (keycode == 123)	 // left
+	if (keycode == MK_LT)	 // left
 	{
-		e->m->xmax -= 0.1;
-		e->m->xmin -= 0.1;
+		e->m->xmax -= 0.1 * MEH;
+		e->m->xmin -= 0.1 * MEH;
 		f->mx -= 0.5;
 	}
-	if (keycode == 124)	// right
+	if (keycode == MK_RT)	// right
 	{
-		e->m->xmax += 0.1;
-		e->m->xmin += 0.1;
+		e->m->xmax += 0.1 * MEH;
+		e->m->xmin += 0.1 * MEH;
 		f->mx += 0.5;
 	}
-	if (keycode == 6)
+	if (keycode == MK_Z)
 	{
-		e->m->xmax -= 0.05;
-		e->m->xmin += 0.05;
-		e->m->ymax -= 0.05;
-		e->m->ymin += 0.05;
-		if (f->zoom)
+		change_val(e);
 		f->zoom <<= 1;
-		if (e->iter < 50)
+		if (e->iter < 512)
 			e->iter *= 2;
 	}
+	if (keycode == MK_F)
+		e->frequency *= 2;
 	// if (keycode == 8)	// c || ZOOM --
 	// {
 	// 	f->zoom -= 0.1;

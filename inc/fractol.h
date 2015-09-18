@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/17 20:45:02 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/18 14:19:46 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@
 
 # define PIXW (CXMAX - CXMIN) / (WIN_X - 1)
 # define PIXH (CYMAX - CYMIN) / (WIN_Y - 1)
+# define MEH  PIXW / PIXH
+
+# define MK_UP	126
+# define MK_DW	125
+# define MK_LT	123
+# define MK_RT	124
+
+# define MK_Z	6
+# define MK_C 	8
+# define MK_F	3
+
+# define MK_ESC	53
+
 
 typedef struct s_mod
 {
@@ -71,6 +84,7 @@ typedef struct  s_env
 	t_frac		*f;
 	t_mod		*m;
 	double		t;
+	double		frequency;
 	double		iter;
 }               t_env;
 
@@ -78,7 +92,7 @@ typedef struct  s_env
 
 int				key_hook(int keycode, t_env *e);
 //------------Rainbow-Color-------------//
-int				rainbow_color(int i, double iter);
+int				rainbow_color(int i,t_env *e);
 int				lerp(float v0, float v1, float t);
 float			normalize(double x, double y, int i);
 //----------Ft_init---------------//
