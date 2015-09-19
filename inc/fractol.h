@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 18:42:50 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 20:02:49 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,17 @@
 # define MB_UP	5
 # define MB_DW	4
 
+# define MOTION_NOTIFY			6
+# define PTR_MOTION_MASK		(1L << 6)
+
 typedef struct s_mod
 {
 	double		xmin; // x is real part
 	double		xmax;
 	double		ymin;
 	double		ymax; // y is imaginary part
+	double		omx;
+	double		omy;
 
 }				t_mod;
 
@@ -115,6 +120,6 @@ int				draw_fractal(t_env *e);
 
 //------------------------------//
 int 	please_choose();
-
+int		mouse_motion_hook(int x, int y, t_env *e);
 #endif
 

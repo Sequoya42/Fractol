@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 18:42:56 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 19:58:41 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_mod   *init_mod()
     m->xmin = -2.0;
     m->ymin = -1.5;
     m->ymax = 1.5;
+    m->omx = -1.0;
+    m->omy = -1.0;
 //    m->rfactor = m->xmax - m->xmin) / (WIN_X)
     return (m);
 }

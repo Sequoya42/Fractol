@@ -6,23 +6,24 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 18:40:55 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 18:58:32 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	change_val(t_env *e, int x, int y, double zoom)
+int	change_val(t_env *e, int x, int y, double zoom)
 {
 	double move_x;
 	double move_y;
 
-	e->f->zoom *= zoom;
-	printf("Value of zoom %f\n", e->f->zoom);
+	if (e->f->zoom < 2000000000)
+		e->f->zoom *= zoom;
 	move_x = ((double)x - (WIN_X / 2.0)) / (WIN_X / 2);
 	move_y = ((double)y - (WIN_Y / 2.0)) / (WIN_Y / 2);
 	e->f->mx += move_x / e->f->zoom;
 	e->f->my += move_y / e->f->zoom;
+	return 1;
 }
 
 void	move_coor(t_env *e, t_frac *f, int keycode)
@@ -59,13 +60,6 @@ int     key_hook(int keycode, t_env *e)
     if (keycode == MK_ESC)
         exit(0);
     move_coor(e, f, keycode);
-	if (keycode == MK_Z)
-	{
-//		change_val(e);
-//		f->zoom <<= 1;
-		if (e->iter < 512)
-			e->iter *= 2;
-	}
 	if (keycode == MK_F)
 		e->frequency *= 2;
 	if (keycode == MK_C)
@@ -79,10 +73,14 @@ int     key_hook(int keycode, t_env *e)
 
 int 	mouse_hook(int button, int x, int y, t_env *e)
 {
+	int fx = x;
+	int fy = y;
 	if (button == 1)
-	{	
-		change_val(e, x, y, 1.05);
-	}
+	change_val(e, fx, fy, 1.05);
+	else if (button == 5)
+		change_val(e, fx, fy, 1.05);
+	else if (button == 4)
+		change_val(e, fx, fy, 0.9);
 	draw_fractal(e);
 	return button;
 }
