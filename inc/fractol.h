@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/18 15:40:15 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 18:42:50 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@
 
 #define SQUARE(x) x * x
 
-# define PIXW (CXMAX - CXMIN) / (WIN_X - 1)
-# define PIXH (CYMAX - CYMIN) / (WIN_Y - 1)
-# define MEH  PIXW / PIXH
+# define PIXW ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom
+# define PIXH ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom
 
+# define MEH PIXW/PIXH
 # define MK_UP	126
 # define MK_DW	125
 # define MK_LT	123
@@ -65,11 +65,13 @@ typedef struct s_frac
 	char		*d;			// buffer where the image will be stored (d is for data)
 	double		cr;			// c is constant, cr is the real part
 	double		ci;			// ci is the imaginary part
+	double		pr;			// same but for mandelbrot
+	double		pi;
 	double		nrl;			// new real
 	double		ni;			// new imaginary
 	double		orl;			// old real
 	double		oi;			// old imaginary
-	long long		zoom;
+	double		zoom;
 
 	double		mx;			// move x
 	double		my;			// move y
@@ -112,7 +114,7 @@ int				draw_mandel(t_env *e, int x, int y);
 int				draw_fractal(t_env *e);
 
 //------------------------------//
-
+int 	please_choose();
 
 #endif
 

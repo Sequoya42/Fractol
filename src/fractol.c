@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:26:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/18 15:16:32 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 17:48:08 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int 	choose_fractal(t_env *e, int x, int y)
 		return (draw_mandel(e, x, y));
 	else if (e->f->n == 2)
 		return (draw_julia(e, x, y));
-	return 0;
+	return -1;
 }
 
 int draw_fractal(t_env *e)

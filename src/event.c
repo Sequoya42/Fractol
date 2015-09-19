@@ -6,20 +6,23 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/18 15:21:09 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 18:40:55 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-//FIND GOOD RATIO TO * INSTEAD OF + A VALUE
-
-void	change_val(t_env *e)
+void	change_val(t_env *e, int x, int y, double zoom)
 {
-		e->m->xmin *= 0.5;
-		e->m->xmax *= 0.5;
-		e->m->ymax *= 0.5;
-		e->m->ymin *= 0.5;
+	double move_x;
+	double move_y;
+
+	e->f->zoom *= zoom;
+	printf("Value of zoom %f\n", e->f->zoom);
+	move_x = ((double)x - (WIN_X / 2.0)) / (WIN_X / 2);
+	move_y = ((double)y - (WIN_Y / 2.0)) / (WIN_Y / 2);
+	e->f->mx += move_x / e->f->zoom;
+	e->f->my += move_y / e->f->zoom;
 }
 
 void	move_coor(t_env *e, t_frac *f, int keycode)
@@ -58,7 +61,7 @@ int     key_hook(int keycode, t_env *e)
     move_coor(e, f, keycode);
 	if (keycode == MK_Z)
 	{
-		change_val(e);
+//		change_val(e);
 //		f->zoom <<= 1;
 		if (e->iter < 512)
 			e->iter *= 2;
@@ -76,13 +79,53 @@ int     key_hook(int keycode, t_env *e)
 
 int 	mouse_hook(int button, int x, int y, t_env *e)
 {
-	if (button == MB_L && x < (WIN_X - 50) && y < (WIN_Y - 50) && x > 50 && y > 50)
-	{
-		change_val(e);
-		ft_putnbrn(button);
+	if (button == 1)
+	{	
+		change_val(e, x, y, 1.05);
 	}
-	x = y;
-	(void)e;
 	draw_fractal(e);
 	return button;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

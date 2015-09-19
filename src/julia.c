@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:57:42 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/18 15:41:00 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 18:26:05 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ int		draw_julia(t_env *e, int x, int y)
 
 	i = 0;
 	f = e->f;
-	 f->cr = -0.7;
-    f->ci = 0.27015;
-	f->nrl = (CXMIN + x * PIXW + f->mx) * f->zoom;
-	f->ni = (CYMIN + y * PIXH + f->my) * f->zoom;
+	f->nrl = (CXMIN + x * PIXW + f->mx) / f->zoom;
+	f->ni = (CYMIN + y * PIXH + f->my) / f->zoom;
 	while (i < MAX_ITER)
 	{
 		f->orl = f->nrl;
@@ -43,15 +41,15 @@ int		draw_mandel(t_env *e, int x, int y)
 
 	i = 0;
 	f = e->f;
-	f->cr = (CXMIN + x * PIXW) / f->zoom + f->mx;
-	f->ci = (CYMIN + y * PIXH) / f->zoom + f->my;
+	f->pr = (CXMIN + x * PIXW)+ f->mx;
+	f->pi = (CYMIN + y * PIXH)+ f->my;
     f->orl = f->nrl = f->oi = f->ni = 0;
 	while (i < MAX_ITER)
 	{
 		f->orl = f->nrl;
 		f->oi = f->ni;
-		f->nrl = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->cr;
-		f->ni = (2 * f->oi * f->orl) + f->ci;
+		f->nrl = (SQUARE(f->orl)) - (SQUARE(f->oi)) + f->pr;
+		f->ni = (2 * f->oi * f->orl) + f->pi;
 		if ((SQUARE(f->nrl)) + (SQUARE(f->ni)) > 4) // 4 means break if the point is 
 			break;
 		i++;
