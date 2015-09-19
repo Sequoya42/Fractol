@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 20:02:49 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 20:34:46 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@
 
 #define SQUARE(x) x * x
 
-# define PIXW ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom
-# define PIXH ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom
+# define PIXW e->zx
+# define PIXH e->zy
+//# define PIXW ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom
+//# define PIXH ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom
 
 # define MEH PIXW/PIXH
 # define MK_UP	126
@@ -98,8 +100,8 @@ typedef struct  s_env
 	double		t;
 	double		frequency;
 	double		iter;
-	double 		x;
-	double 		y;
+	double 		zx;
+	double 		zy;
 }               t_env;
 
 //------------Events--------------//

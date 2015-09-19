@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 18:58:32 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 20:39:34 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,31 @@ void	move_coor(t_env *e, t_frac *f, int keycode)
 {
 	if (keycode == MK_UP)	 // up 
 	{
-		e->m->ymax -= 0.1 * MEH;
-		e->m->ymin -= 0.1 * MEH;
-		f->my -= 0.5;
+		e->m->ymax -= 0.1;
+		e->m->ymin -= 0.1;
+    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / f->zoom;
+    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
 	}
 	if (keycode == MK_DW)	// down
 	{
-		e->m->ymax += 0.1 * MEH;
-		e->m->ymin += 0.1 * MEH;
-		f->my += 0.5;
+		e->m->ymax += 0.1;
+		e->m->ymin += 0.1;
+    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom;
+    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
 	}
 	if (keycode == MK_LT)	 // left
 	{
-		e->m->xmax -= 0.1 * MEH;
-		e->m->xmin -= 0.1 * MEH;
-		f->mx -= 0.5;
+		e->m->xmax -= 0.1;
+		e->m->xmin -= 0.1;
+    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom;
+    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
 	}
 	if (keycode == MK_RT)	// right
 	{
-		e->m->xmax += 0.1 * MEH;
-		e->m->xmin += 0.1 * MEH;
-		f->mx += 0.5;
+		e->m->xmax += 0.1;
+		e->m->xmin += 0.1;
+    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom;
+    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
 	}
 }
 int     key_hook(int keycode, t_env *e)

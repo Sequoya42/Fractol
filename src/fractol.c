@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:26:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 20:03:07 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 20:52:14 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,11 @@ int draw_fractal(t_env *e)
 {
     int 	c;
 	int 	ch; // choice of fractal
-	double  x;
-	double  y;
+	register int x;
+	register int  y;
 
 	x = 0.0;
 	y = 0.0;
-	// mlx_key_hook(e->win, key_hook, e);
-	// mlx_mouse_hook(e->win, mouse_hook, e);
-//	mlx_hook(e->win, MOTION_NOTIFY, PTR_MOTION_MASK,
-//				mouse_motion_hook, e);
     while (y < WIN_Y)
     {
         x = 0;
@@ -74,7 +70,7 @@ int draw_fractal(t_env *e)
         }
         y++;
     }
-    		printf("%f\t%f\n", e->f->cr, e->f->ci);
+//    		printf("%f\t%f\n", e->f->cr, e->f->ci);
 	mlx_put_image_to_window(e->mlx, e->win, e->f->img, 0, 0);
     return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 19:58:41 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 21:07:46 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ t_frac  *init_frac(char *av)
     f->mx = 0.0;
     f->my = 0.0;
     f->n = ft_atoi(av);
+    f->nrl = 0.0;
+    f->ni = 0.0;
     if (f->n != 1 && f->n != 2)
     {
         please_choose();
@@ -59,5 +61,7 @@ t_env   *init_env(char *av)
     e->t = (double)time(NULL);
     e->frequency = 0.1;
     e->iter = 32;
+    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
+    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
     return e;
 }

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:00 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 20:07:07 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 20:46:37 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int main(int ac, char **av)
 				mouse_motion_hook, e);
 	mlx_expose_hook(e->win, draw_fractal , e);
 	mlx_loop(e->mlx);
+	mlx_destroy_window(e->mlx, e->win);
 	return (0);
 }

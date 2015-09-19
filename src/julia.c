@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:57:42 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 19:58:06 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/19 21:11:23 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ int		draw_julia(t_env *e, int x, int y)
 
 	i = 0;
 	f = e->f;
-	f->nrl = (CXMIN + x * PIXW + f->mx) / f->zoom;
-	f->ni = (CYMIN + y * PIXH + f->my) / f->zoom;
+
+	f->ni = CYMAX - (long double)y * e->zy;
+	f->nrl = CXMIN + (long double)x  * e->zx;
+// f->nrl = (CXMIN + x * PIXW + f->mx) / f->zoom;
+// f->ni = (CYMIN + y * PIXH + f->my) / f->zoom;
 	while (i < MAX_ITER)
 	{
 		f->orl = f->nrl;
@@ -31,7 +34,7 @@ int		draw_julia(t_env *e, int x, int y)
 			break;									//  outside the circle with radius 2
 		i++;
 	}
-	return (i);
+		return (i);
 }
 
 int		draw_mandel(t_env *e, int x, int y)
@@ -41,8 +44,10 @@ int		draw_mandel(t_env *e, int x, int y)
 
 	i = 0;
 	f = e->f;
-	f->pr = (CXMIN + x * PIXW)+ f->mx;
-	f->pi = (CYMIN + y * PIXH)+ f->my;
+	f->pi = CYMAX - (long double)y * e->zy;
+	f->pr = CXMIN + (long double)x * e->zx;
+//	f->pr = (CXMIN + x * PIXW)+ f->mx;
+//	f->pi = (CYMIN + y * PIXH)+ f->my;
     f->orl = f->nrl = f->oi = f->ni = 0;
 	while (i < MAX_ITER)
 	{
