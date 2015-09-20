@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:26:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 20:52:14 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/20 18:37:22 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,15 @@ int 	choose_fractal(t_env *e, int x, int y)
 	return -1;
 }
 
-int		mouse_motion_hook(int x, int y, t_env *e)
+int		motion_hook(int x, int y, t_env *e)
 {
 	if (x >= 0 && y >= 0 && x <= WIN_X && y <= WIN_Y && e->f->n == 2)
 	{
-		e->f->cr += ((double)e->m->omy - (double)y) / 300.0;
-		e->f->ci += ((double)e->m->omx - (double)x) / 300.0;
+		e->f->ci = CYMIN - (double)y * e->zy;
+		e->f->cr = CXMIN + (double)x * e->zx;
 
 	}
-	e->m->omx = x;
-	e->m->omy = y;
+	draw_fractal(e);
 	return (0);
 }
 

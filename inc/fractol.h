@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 20:34:46 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/20 18:32:20 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define MK_F	3
 
 # define MK_ESC	53
+# define MK_PL	69 // plus key (+)
+# define MK_MI	78 // minus key (-)
 
 # define MB_L	1
 # define MB_R	2
@@ -107,6 +109,7 @@ typedef struct  s_env
 //------------Events--------------//
 
 int				key_hook(int keycode, t_env *e);
+int		motion_hook(int x, int y, t_env *e);
 int 	mouse_hook(int button,int x, int y, t_env *e);
 //------------Rainbow-Color-------------//
 int				rainbow_color(int i,t_env *e);
@@ -122,6 +125,6 @@ int				draw_fractal(t_env *e);
 
 //------------------------------//
 int 	please_choose();
-int		mouse_motion_hook(int x, int y, t_env *e);
+
 #endif
 

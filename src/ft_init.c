@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 21:07:46 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/20 18:41:45 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_mod   *init_mod()
     m = malloc(sizeof(t_mod) * 1);
     m->xmax = 2.0;
     m->xmin = -2.0;
-    m->ymin = -1.5;
+    m->ymin = -2.0;
     m->ymax = 1.5;
     m->omx = -1.0;
     m->omy = -1.0;
@@ -31,8 +31,8 @@ t_frac  *init_frac(char *av)
 {
     t_frac *f;
     f = malloc(sizeof(t_frac) * 1);
-    f->cr = -0.7;
-    f->ci = 0.27015;
+    f->cr = -0.8;
+    f->ci = 0.156;
     f->zoom = 1;
     f->mx = 0.0;
     f->my = 0.0;

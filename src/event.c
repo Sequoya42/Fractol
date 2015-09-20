@@ -6,66 +6,53 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/19 20:39:34 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/20 18:49:17 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	change_val(t_env *e, int x, int y, double zoom)
+void	move_coor(t_env *e, int keycode)
 {
-	double move_x;
-	double move_y;
-
-	if (e->f->zoom < 2000000000)
-		e->f->zoom *= zoom;
-	move_x = ((double)x - (WIN_X / 2.0)) / (WIN_X / 2);
-	move_y = ((double)y - (WIN_Y / 2.0)) / (WIN_Y / 2);
-	e->f->mx += move_x / e->f->zoom;
-	e->f->my += move_y / e->f->zoom;
-	return 1;
-}
-
-void	move_coor(t_env *e, t_frac *f, int keycode)
-{
-	if (keycode == MK_UP)	 // up 
+	if (keycode == MK_DW)	 // up 
 	{
 		e->m->ymax -= 0.1;
 		e->m->ymin -= 0.1;
-    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / f->zoom;
-    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
+	    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
 	}
-	if (keycode == MK_DW)	// down
+	if (keycode == MK_UP)	// down
 	{
 		e->m->ymax += 0.1;
 		e->m->ymin += 0.1;
-    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom;
-    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
+	    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
 	}
 	if (keycode == MK_LT)	 // left
 	{
 		e->m->xmax -= 0.1;
 		e->m->xmin -= 0.1;
-    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom;
-    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
+    	e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
 	}
 	if (keycode == MK_RT)	// right
 	{
 		e->m->xmax += 0.1;
 		e->m->xmin += 0.1;
-    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1)) / e->f->zoom;
-    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1)) / e->f->zoom;
+	    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
 	}
 }
+
 int     key_hook(int keycode, t_env *e)
 {
     mlx_clear_window(e->mlx, e->win);
 	t_frac *f = e->f;
     if (keycode == MK_ESC)
         exit(0);
-    move_coor(e, f, keycode);
+    move_coor(e, keycode);
 	if (keycode == MK_F)
 		e->frequency *= 2;
+	if (keycode == MK_PL)
+		MAX_ITER = (MAX_ITER < 8000) ? MAX_ITER * 2 : MAX_ITER;
+	if (keycode == MK_MI)
+		MAX_ITER = (MAX_ITER > 2) ? MAX_ITER / 2 : MAX_ITER;
 	if (keycode == MK_C)
 	{
 		f->n = (f->n == 2) ?  1 : 2;
@@ -77,57 +64,23 @@ int     key_hook(int keycode, t_env *e)
 
 int 	mouse_hook(int button, int x, int y, t_env *e)
 {
-	int fx = x;
-	int fy = y;
-	if (button == 1)
-	change_val(e, fx, fy, 1.05);
-	else if (button == 5)
-		change_val(e, fx, fy, 1.05);
-	else if (button == 4)
-		change_val(e, fx, fy, 0.9);
+
+	e->f->cr = CXMAX - CXMIN;
+	e->f->ci = CYMAX - CYMIN;
+	e->f->mx = ((double)x / WIN_X * e->f->cr) - e->f->cr / 2 + e->f->mx;
+	e->f->my = (double)(WIN_Y - y) / WIN_Y * e->f->ci - e->f->ci / 2 + e->f->my;
+	e->f->cr = (button == 1) ? e->f->cr / 1.5 : e->f->cr;
+	e->f->ci = (button == 1) ? e->f->ci / 1.5 : e->f->ci;
+	e->f->cr = (button == 2) ? e->f->cr * 1.5 : e->f->cr;
+	e->f->ci = (button == 2) ? e->f->ci * 1.5 : e->f->ci;
+
+	CXMIN = e->f->mx - e->f->cr / 2;
+	CXMAX = e->f->mx + e->f->cr / 2;
+	CYMIN = e->f->my - e->f->ci / 2;
+	CYMAX = e->f->my + e->f->ci / 2;
+    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
+    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
 	draw_fractal(e);
 	return button;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
