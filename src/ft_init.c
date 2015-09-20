@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/20 18:41:45 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/20 20:49:31 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static t_mod   *init_mod()
     m->xmin = -2.0;
     m->ymin = -2.0;
     m->ymax = 1.5;
-    m->omx = -1.0;
-    m->omy = -1.0;
-//    m->rfactor = m->xmax - m->xmin) / (WIN_X)
     return (m);
 }
 
@@ -33,7 +30,6 @@ t_frac  *init_frac(char *av)
     f = malloc(sizeof(t_frac) * 1);
     f->cr = -0.8;
     f->ci = 0.156;
-    f->zoom = 1;
     f->mx = 0.0;
     f->my = 0.0;
     f->n = ft_atoi(av);
@@ -60,7 +56,7 @@ t_env   *init_env(char *av)
 	e->f->d = mlx_get_data_addr(e->f->img, &e->f->bpp, &e->f->line_size, &e->f->endian);
     e->t = (double)time(NULL);
     e->frequency = 0.1;
-    e->iter = 32;
+    e->iter = 128;
     e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
     e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
     return e;

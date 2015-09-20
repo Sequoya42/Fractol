@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/20 18:32:20 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/20 20:36:08 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define MK_Z	6
 # define MK_C 	8
 # define MK_F	3
+# define MK_R  	15
 
 # define MK_ESC	53
 # define MK_PL	69 // plus key (+)

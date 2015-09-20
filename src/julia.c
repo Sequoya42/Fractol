@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:57:42 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/20 18:15:51 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/20 20:55:10 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int		draw_julia(t_env *e, int x, int y)
 
 	i = 0;
 	f = e->f;
-
 	f->ni = CYMAX - (long double)y * e->zy;
 	f->nrl = CXMIN + (long double)x  * e->zx;
 	while (i < MAX_ITER)
