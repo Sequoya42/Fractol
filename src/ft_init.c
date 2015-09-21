@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/20 20:49:31 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/21 17:21:41 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ t_env   *init_env(char *av)
 	e->f->d = mlx_get_data_addr(e->f->img, &e->f->bpp, &e->f->line_size, &e->f->endian);
     e->t = (double)time(NULL);
     e->frequency = 0.1;
-    e->iter = 128;
+    e->iter = 16;
+    e->color = 2;
     e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
     e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
     return e;

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:26:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/21 16:35:13 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/21 17:09:35 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,6 @@ int 	choose_fractal(t_env *e, int x, int y)
 	else if (e->f->n == 2)
 		return (draw_julia(e, x, y));
 	return -1;
-}
-
-int		motion_hook(int x, int y, t_env *e)
-{
-	if (x >= 0 && y >= 0 && x <= WIN_X && y <= WIN_Y && e->f->n == 2)
-	{
-		e->f->ci = CYMAX - (double)y * e->zy;
-		e->f->cr = CXMIN + (double)x * e->zx;
-	}
-	else
-		return 0;
-	return (draw_fractal(e));
 }
 
 int draw_fractal(t_env *e)

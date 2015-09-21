@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/21 16:33:44 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/21 17:23:52 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define MK_C 	8
 # define MK_F	3
 # define MK_R  	15
+# define MK_B	11
+# define MK_N	45
 
 # define MK_ESC	53
 # define MK_PL	69 // plus key (+)
@@ -105,19 +107,20 @@ typedef struct  s_env
 	double		iter;
 	double 		zx;
 	double 		zy;
+	int 		color;
 }               t_env;
 
 //------------Events--------------//
 
 int				key_hook(int keycode, t_env *e);
-int		motion_hook(int x, int y, t_env *e);
-int 	mouse_hook(int button,int x, int y, t_env *e);
+int				motion_hook(int x, int y, t_env *e);
+int 			mouse_hook(int button,int x, int y, t_env *e);
 //------------Rainbow-Color-------------//
 int				rainbow_color(int i,t_env *e);
 int				lerp(float v0, float v1, float t);
 float			normalize(double x, double y, int i);
 //----------Ft_init---------------//
-t_frac  *init_frac(char *av);
+t_frac  		*init_frac(char *av);
 t_env			*init_env(char *av);
 //------------------------------//
 int				draw_julia(t_env *e, int x, int y);
@@ -125,7 +128,7 @@ int				draw_mandel(t_env *e, int x, int y);
 int				draw_fractal(t_env *e);
 
 //------------------------------//
-int 	please_choose();
+int 			please_choose();
 
 #endif
 
