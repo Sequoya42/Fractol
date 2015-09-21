@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:26:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/20 19:54:35 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/21 16:35:13 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		motion_hook(int x, int y, t_env *e)
 {
 	if (x >= 0 && y >= 0 && x <= WIN_X && y <= WIN_Y && e->f->n == 2)
 	{
-		e->f->ci = CYMIN - (double)y * e->zy;
+		e->f->ci = CYMAX - (double)y * e->zy;
 		e->f->cr = CXMIN + (double)x * e->zx;
 	}
 	else

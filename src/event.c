@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/20 20:53:39 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/21 16:31:00 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ int 	mouse_hook(int button, int x, int y, t_env *e)
 	e->f->ci = CYMAX - CYMIN;
 	e->f->mx = ((double)x / WIN_X * e->f->cr) - e->f->cr / 2 + e->f->mx;
 	e->f->my = (double)(WIN_Y - y) / WIN_Y * e->f->ci - e->f->ci / 2 + e->f->my;
-	if (button == 1)
+	if (button == MB_L || button == MB_UP)
 	{
 		e->f->cr /= 1.5;
 		e->f->ci /= 1.5;
 	}
-	else if (button == 2)
+	else if (button == MB_R || button == MB_DW)
 	{
 		e->f->cr *= 1.5;
 		e->f->ci *= 1.5;
