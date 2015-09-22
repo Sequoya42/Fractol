@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:57:42 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/22 18:22:21 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 18:44:06 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int				draw_ship(t_env *e, int x, int y)
 
 	i = -1;
 	f = e->f;
-	f->pr = CXMIN + (long double)x * e->zx;
 	f->pi = CYMAX - (long double)y * e->zy;
+	f->pr = CXMIN + (long double)x * e->zx;
 	f->nrl = f->pr;
 	f->ni = f->pi;
 	zr = SQUARE(f->nrl);

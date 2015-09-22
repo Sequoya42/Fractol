@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/22 18:37:36 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 18:45:44 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@
 # define MK_Z	6
 # define MK_C 	8
 # define MK_F	3
-# define MK_D 	4
+# define MK_D 	2
+# define MK_H	4
 # define MK_R  	15
 # define MK_B	11
 # define MK_N	45

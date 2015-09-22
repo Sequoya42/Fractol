@@ -6,7 +6,7 @@
 #    By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/03/12 17:20:35 by rbaum             #+#    #+#              #
-#    Updated: 2015/09/12 19:57:36 by rbaum            ###   ########.fr        #
+#    Updated: 2015/09/22 18:50:56 by rbaum            ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,6 +30,7 @@ INC_PATH =		./inc/
 SRC_NAME =		main.c \
 				fractol.c\
 				rainbow_color.c\
+				mouse_event.c\
 				event.c\
 				ft_init.c\
 				julia.c\

@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/22 18:38:56 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 18:55:02 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,26 @@
 void	move_coor(t_env *e, int keycode)
 {
 	const	double k = e->zx * 10;
-	if (keycode == MK_DW)	 // up 
+
+	if (keycode == MK_DW)
 	{
 		CYMAX -= k;
 		CYMIN -= k;
 	    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
 	}
-	if (keycode == MK_UP)	// down
+	if (keycode == MK_UP)
 	{
 		CYMAX += k;
 		CYMIN += k;
 	    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
 	}
-	if (keycode == MK_LT)	 // left
+	if (keycode == MK_LT)
 	{
 		CXMAX -= k;
 		CXMIN -= k;
     	e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
 	}
-	if (keycode == MK_RT)	// right
+	if (keycode == MK_RT)
 	{
 		CXMAX += k;
 		CXMIN += k;
@@ -44,9 +45,10 @@ void	move_coor(t_env *e, int keycode)
 void	ft_frequ(int keycode, t_env *e)
 {
 	if (keycode == MK_F)
-		e->frequency *= 5;
-	else if (keycode == MK_D)
-		e->frequency /= 5;
+		e->frequency *= 2;
+	else if (keycode == MK_D && e->frequency > 0.02)
+		e->frequency /= 2;
+	printf("frequ: %f\n", e->frequency);
 }
 
 void	ft_change_frac(t_env *e)
@@ -63,7 +65,6 @@ void	ft_change_frac(t_env *e)
 int     key_hook(int keycode, t_env *e)
 {
     mlx_clear_window(e->mlx, e->win);
-
     if (keycode == MK_ESC)
         exit(0);
 	else if (keycode == MK_PL)
@@ -83,57 +84,6 @@ int     key_hook(int keycode, t_env *e)
 	draw_fractal(e);
     return (0);
 }
-
-int 	mouse_hook(int button, int x, int y, t_env *e)
-{
-	double dcr;
-	double dci;
-
-	dcr = x;
-	dci = y;
-	e->f->cr = CXMAX - CXMIN;
-	e->f->ci = CYMAX - CYMIN;
-	e->f->mx = ((double)x / WIN_X * e->f->cr) - e->f->cr / 2 + e->f->mx;
-	e->f->my = (double)(WIN_Y - y) / WIN_Y * e->f->ci - e->f->ci / 2 + e->f->my;
-	if ((button == MB_L || button == MB_UP) && x <= WIN_X && y <= WIN_Y)
-	{
-		e->f->cr /= 1.5;
-		e->f->ci /= 1.5;
-	}
-	else if ((button == MB_R || button == MB_DW) && x <= WIN_X && y <= WIN_Y)
-	{
-		e->f->cr *= 1.5;
-		e->f->ci *= 1.5;
-	}
-	dcr = e->f->cr / 2;
-	dci = e->f->ci / 2;
-	CXMIN = e->f->mx - dcr;
-	CXMAX = e->f->mx + dcr;
-	CYMIN = e->f->my - dci;
-	CYMAX = e->f->my + dci;
-    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
-    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
-	draw_fractal(e);
-	return button;
-}
-
-int		motion_hook(int x, int y, t_env *e)
-{
-	if (x >= 0 && y >= 0 && x <= WIN_X && y <= WIN_Y && e->f->n == 2)
-	{
-		e->f->ci = CYMAX - (double)y * e->zy;
-		e->f->cr = CXMIN + (double)x * e->zx;
-	}
-	else
-		return 0;
-	return (draw_fractal(e));
-}
-
-
-
-
-
-
 
 
 
