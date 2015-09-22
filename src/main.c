@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:00 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/20 18:37:55 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 15:43:31 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,19 @@
 
 int 	please_choose()
 {
-	ft_putstr("Type 1 for mandelbrot\n");
-	ft_putstr("Type 2 for julia\n");
+	ft_strcol(KMAG, "Type", " 1 ", "for mandelbrot\n");
+	ft_strcol(KMAG, "Type", " 2 ", "for Julia\n");
+	ft_colstr(KGRN, "\n\t\tUsage\n");
+	ft_strcol(KMAG, NULL, "Mouse left", " to zoom in\t");
+	ft_strcol(KMAG, NULL, "Mouse right", " to zoom out\n");
+	ft_strcol(KMAG, NULL, "Escape", " to quit\n");
+	ft_strcol(KMAG, NULL, "F", " to increase frequency\n");
+	ft_strcol(KMAG, NULL, "+", " to  increase iteration\n");
+	ft_strcol(KMAG, NULL, "-", " to decrease iteration\n");
+	ft_strcol(KMAG, NULL, "C", " to change between fractal\n");
+	ft_strcol(KMAG, NULL, "N", " to play with the colors\n");
+	ft_strcol(KMAG, NULL, "B", " to altern between black and white\n");
+	ft_strcol(KMAG, NULL, "Arrow keys", " to move a bit\n");
 	return (-1);
 }
 

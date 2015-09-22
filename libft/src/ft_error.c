@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/20 07:50:24 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/12 17:33:18 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 15:40:13 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,22 @@ int		ft_error(char *name, char *arg, char *msg)
 	}
 	ft_putendl_fd(msg, 2);
 	return (-1);
+}
+
+void	ft_colstr(char *col, char *msg)
+{
+	ft_putstr(col);
+	ft_putstr(msg);
+	ft_putstr(KNRM);
+}
+
+void	ft_strcol(char *col, char *o, char *t, char *l)
+{
+	if (o)
+		ft_putstr(o);
+	ft_putstr(col);
+	ft_putstr(t);
+	ft_putstr(KNRM);
+	if (l)
+		ft_putstr(l);
 }

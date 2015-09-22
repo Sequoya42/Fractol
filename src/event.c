@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/21 17:24:09 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 15:25:13 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 
 void	move_coor(t_env *e, int keycode)
 {
+	const	double k = e->zx * 10;
 	if (keycode == MK_DW)	 // up 
 	{
-		e->m->ymax -= 0.1;
-		e->m->ymin -= 0.1;
+		CYMAX -= k;
+		CYMIN -= k;
 	    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
 	}
 	if (keycode == MK_UP)	// down
 	{
-		e->m->ymax += 0.1;
-		e->m->ymin += 0.1;
+		CYMAX += k;
+		CYMIN += k;
 	    e->zy =  ((CYMAX - CYMIN) / (WIN_Y - 1));
 	}
 	if (keycode == MK_LT)	 // left
 	{
-		e->m->xmax -= 0.1;
-		e->m->xmin -= 0.1;
+		CXMAX -= k;
+		CXMIN -= k;
     	e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
 	}
 	if (keycode == MK_RT)	// right
 	{
-		e->m->xmax += 0.1;
-		e->m->xmin += 0.1;
+		CXMAX += k;
+		CXMIN += k;
 	    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
 	}
 }
@@ -45,7 +46,6 @@ int     key_hook(int keycode, t_env *e)
     mlx_clear_window(e->mlx, e->win);
 	t_frac *f = e->f;
 	move_coor(e, keycode);
-	ft_putnbrendl(keycode);
     if (keycode == MK_ESC)
         exit(0);
 	else if (keycode == MK_F)

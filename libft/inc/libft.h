@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/03 18:16:30 by rbaum             #+#    #+#             */
-/*   Updated: 2015/03/18 03:46:17 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 15:38:00 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 # include <sys/uio.h>
 
 # define BUFF_SIZE 32
+
+# define KNRM  "\x1B[0m"
+# define KRED  "\x1B[31m"
+# define KGRN  "\x1B[32m"
+# define KYEL  "\x1B[33m"
+# define KBLU  "\x1B[34m"
+# define KMAG  "\x1B[35m"
+# define KCYN  "\x1B[36m"
+# define KWHT  "\x1B[37m"
 
 typedef struct		s_list
 {
@@ -60,7 +69,8 @@ void				ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_clear_tab(char ***tab);
-
+void				ft_colstr(char *col, char *msg);
+void				ft_strcol(char *col, char *o, char *t, char *l);
 int					debug(void);
 int					ft_atoi(char const *str);
 int					ft_isalnum(int c);
