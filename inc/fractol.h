@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:29 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/21 17:23:52 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 17:28:59 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ t_env			*init_env(char *av);
 //------------------------------//
 int				draw_julia(t_env *e, int x, int y);
 int				draw_mandel(t_env *e, int x, int y);
+int				draw_ship(t_env *e, int x, int y);
 int				draw_fractal(t_env *e);
 
 //------------------------------//
