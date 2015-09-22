@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:47:31 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/22 17:43:11 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 18:38:56 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,32 +41,45 @@ void	move_coor(t_env *e, int keycode)
 	}
 }
 
+void	ft_frequ(int keycode, t_env *e)
+{
+	if (keycode == MK_F)
+		e->frequency *= 5;
+	else if (keycode == MK_D)
+		e->frequency /= 5;
+}
+
+void	ft_change_frac(t_env *e)
+{
+	ft_reset(e);
+	if (e->f->n == 1)
+		e->f->n = 2;
+	else if (e->f->n == 2)
+		e->f->n = 3;
+	else if (e->f->n == 3)
+		e->f->n = 1;
+}
+
 int     key_hook(int keycode, t_env *e)
 {
     mlx_clear_window(e->mlx, e->win);
-	t_frac *f = e->f;
-	move_coor(e, keycode);
+
     if (keycode == MK_ESC)
         exit(0);
-	else if (keycode == MK_F)
-	{
-		e->frequency *= 10;
-		printf("%f\n", e->frequency);
-	}
-
 	else if (keycode == MK_PL)
 		MAX_ITER = (MAX_ITER < 8000) ? MAX_ITER * 2 : MAX_ITER;
 	else if (keycode == MK_MI)
 		MAX_ITER = (MAX_ITER > 2) ? MAX_ITER / 2 : MAX_ITER;
-	else if (keycode == MK_C)
-	{
-		f->n = (f->n == 2) ?  1 : 2;
-		init_frac(ft_itoa(f->n));
-	}
 	else if (keycode == MK_N)
 		e->color++;
 	else if (keycode == MK_B)
 		e->color = e->color == 0 ? 2: 0;
+	else if (keycode == MK_R)
+		ft_reset(e);
+	else if (keycode == MK_C)
+		ft_change_frac(e);
+	move_coor(e, keycode);
+	ft_frequ(keycode, e);
 	draw_fractal(e);
     return (0);
 }

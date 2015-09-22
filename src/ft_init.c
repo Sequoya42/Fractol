@@ -6,11 +6,33 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 19:49:26 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/22 17:32:00 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/22 18:33:17 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void        ft_reset(t_env *e)
+{
+    t_frac *f;
+
+    f = e->f;
+    CXMAX = 2.0;
+    CXMIN = -2.0;
+    CYMIN = -2.0;
+    CYMAX = 1.5;
+    f->cr = -0.8;
+    f->ci = 0.156;
+    f->mx = 0.0;
+    f->my = 0.0;
+    f->nrl = 0.0;
+    f->ni = 0.0;
+    e->frequency = 0.1;
+    e->iter = 16;
+    e->color = 2;
+    e->zx = ((CXMAX - CXMIN) / (WIN_X - 1));
+    e->zy = ((CYMAX - CYMIN) / (WIN_Y - 1));
+}
 
 static t_mod   *init_mod()
 {
