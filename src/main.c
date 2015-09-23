@@ -6,16 +6,17 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/08 19:34:00 by rbaum             #+#    #+#             */
-/*   Updated: 2015/09/22 15:43:31 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/23 13:31:20 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int 	please_choose()
+int				please_choose(void)
 {
-	ft_strcol(KMAG, "Type", " 1 ", "for mandelbrot\n");
+	ft_strcol(KMAG, "Type", " 1 ", "for Mandelbrot\n");
 	ft_strcol(KMAG, "Type", " 2 ", "for Julia\n");
+	ft_strcol(KMAG, "Type", " 3 ", "for Burning Ship\n");
 	ft_colstr(KGRN, "\n\t\tUsage\n");
 	ft_strcol(KMAG, NULL, "Mouse left", " to zoom in\t");
 	ft_strcol(KMAG, NULL, "Mouse right", " to zoom out\n");
@@ -30,9 +31,9 @@ int 	please_choose()
 	return (-1);
 }
 
-int main(int ac, char **av)
+int				main(int ac, char **av)
 {
-	t_env *e;
+	t_env		*e;
 
 	if (ac != 2)
 		return (please_choose());
