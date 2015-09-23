@@ -6,17 +6,17 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/02 18:49:59 by rbaum             #+#    #+#             */
-/*   Updated: 2015/01/02 18:54:10 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/23 13:45:06 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list *ft_lstmap(t_list *list, t_list *(*f)(t_list*))
+t_list		*ft_lstmap(t_list *list, t_list *(*f)(t_list*))
 {
-	t_list *maped;
-	t_list *add;
-	t_list *tmp;
+	t_list	*maped;
+	t_list	*add;
+	t_list	*tmp;
 
 	if (list == NULL)
 		return (NULL);

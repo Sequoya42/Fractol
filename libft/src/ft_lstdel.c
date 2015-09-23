@@ -6,7 +6,7 @@
 /*   By: rbaum <rbaum@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/02 18:50:18 by rbaum             #+#    #+#             */
-/*   Updated: 2015/01/02 18:50:34 by rbaum            ###   ########.fr       */
+/*   Updated: 2015/09/23 13:44:46 by rbaum            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 	{
 		tmp2 = tmp->next;
 		del(tmp->content, tmp->content_size);
-		free (tmp);
+		free(tmp);
 		tmp = tmp2;
 	}
 	*alst = NULL;
